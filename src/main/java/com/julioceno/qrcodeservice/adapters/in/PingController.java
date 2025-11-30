@@ -1,4 +1,4 @@
-package com.julioceno.qrcodeservice.infrastructure.controllers;
+package com.julioceno.qrcodeservice.adapters.in;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
