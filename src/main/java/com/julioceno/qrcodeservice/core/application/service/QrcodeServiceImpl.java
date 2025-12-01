@@ -1,6 +1,5 @@
 package com.julioceno.qrcodeservice.core.application.service;
 
-import com.julioceno.qrcodeservice.core.application.dto.CreateQRcodeDTO;
 import com.julioceno.qrcodeservice.core.application.usecases.CreateQrcodeUseCase;
 import com.julioceno.qrcodeservice.core.application.usecases.QrcodeUseCase;
 import com.julioceno.qrcodeservice.core.domain.QrCode;

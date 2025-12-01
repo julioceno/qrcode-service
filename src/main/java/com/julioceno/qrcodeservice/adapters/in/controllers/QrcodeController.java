@@ -1,7 +1,6 @@
 package com.julioceno.qrcodeservice.adapters.in.controllers;
 
 import com.julioceno.qrcodeservice.adapters.in.dto.QrcodeCreateDTO;
-import com.julioceno.qrcodeservice.core.application.dto.CreateQRcodeDTO;
 import com.julioceno.qrcodeservice.core.application.usecases.QrcodeUseCase;
 import com.julioceno.qrcodeservice.core.domain.QrCode;
 import jakarta.validation.Valid;
