@@ -41,7 +41,7 @@ public class ZxingQrCodeProviderAdapter implements QrcodeProviderPort {
                 MatrixToImageWriter.writeToStream(bitMatrix, "PNG", outputStream);
                 byte[] qrCodeBytes = outputStream.toByteArray();
 
-                logger.info("QR Code gerado com sucesso para a URL: " + url);
+                logger.info("QR Code successfully generated for URL: " + url);
 
                 return qrCodeBytes;
             }
