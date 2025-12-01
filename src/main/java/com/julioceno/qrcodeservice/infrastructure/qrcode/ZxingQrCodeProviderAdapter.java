@@ -5,6 +5,7 @@ import com.google.zxing.WriterException;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
+import com.julioceno.qrcodeservice.core.application.exception.QrCodeGenerationException;
 import com.julioceno.qrcodeservice.core.application.ports.out.LoggerFactoryPort;
 import com.julioceno.qrcodeservice.core.application.ports.out.LoggerPort;
 import com.julioceno.qrcodeservice.core.application.ports.out.QrcodeProviderPort;
@@ -47,8 +48,7 @@ public class ZxingQrCodeProviderAdapter implements QrcodeProviderPort {
         } catch (WriterException | IOException e) {
             logger.error("Failed to generate QR code for URL: {} ", url,  e);
 
-            // TODO: replace this exception for a application exception
-            throw new RuntimeException(e);
+            throw new QrCodeGenerationException("Failed to generate QR code", e);
         }
     }
 }

@@ -2,6 +2,7 @@ package com.julioceno.qrcodeservice.infrastructure.exception;
 
 import com.julioceno.qrcodeservice.core.application.exception.BadRequestException;
 import com.julioceno.qrcodeservice.core.application.exception.ErrorResponse;
+import com.julioceno.qrcodeservice.core.application.exception.QrCodeGenerationException;
 import com.julioceno.qrcodeservice.infrastructure.logger.CorrelationId;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
@@ -50,6 +51,25 @@ public class GlobalExceptionHandler {
         );
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
+    }
+
+    @ExceptionHandler(QrCodeGenerationException.class)
+    public ResponseEntity<ErrorResponse> handleQrCodeException(
+            QrCodeGenerationException ex,
+            HttpServletRequest request
+    ) {
+        String correlationId = CorrelationId.get();
+
+        ErrorResponse body = new ErrorResponse(
+                LocalDateTime.now(),
+                HttpStatus.INTERNAL_SERVER_ERROR.value(),
+                "QR Code Generation Error",
+                ex.getMessage(),
+                request.getRequestURI(),
+                correlationId
+        );
+
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(body);
     }
 
     @ExceptionHandler(RuntimeException.class)
