@@ -8,7 +8,7 @@ public final class CorrelationId {
     public CorrelationId() {
     }
 
-    public static String getCorrelationId() {
+    public static String get() {
         return MDC.get(CORRELATION_ID);
     }
 }
