@@ -14,18 +14,18 @@ public class Slf4LoggerAdapter implements LoggerPort {
     }
 
     @Override
-    public void info(String message) {
-        logger.info(appendCorrelationId(message));
+    public void info(String message, Object... params) {
+        logger.info(appendCorrelationId(message), params);
     }
 
     @Override
-    public void warn(String message) {
+    public void warn(String message, Object... params) {
         logger.warn(appendCorrelationId(message));
     }
 
     @Override
-    public void error(String message) {
-        logger.error(appendCorrelationId(message));
+    public void error(String message, Object... params) {
+        logger.error(appendCorrelationId(message), params);
     }
 
     private String appendCorrelationId(String message) {

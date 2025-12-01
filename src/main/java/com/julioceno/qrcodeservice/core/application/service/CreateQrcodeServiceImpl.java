@@ -19,8 +19,10 @@ public class CreateQrcodeServiceImpl implements CreateQrcodeUseCase {
 
     @Override
     public void run(QrCode qrCode) {
-        logger.info("teste");
+        logger.info("CreateQrcodeServiceImpl.run - start ");
         byte[] qrcodePdfImage = qrcodeProviderPort.generatePng(qrCode.getUrl());
         IO.println(qrcodePdfImage.length);
+
+        logger.info("CreateQrcodeServiceImpl.run - end ");
     }
 }
