@@ -38,7 +38,7 @@ class GetQrCodeServiceImplTest {
         QrCodeDTO result = getQrCodeServiceImpl.run(id);
 
         verify(qrCodeRepositoryPort).findById(id);
-        assertEquals(qrCode.getId(), "result.getId()");
+        assertEquals(qrCode.getId(), result.getId());
     }
 
     @Test
