@@ -2,8 +2,13 @@ spring:
   application:
     name: qrcodeservice
 
+  mongodb:
+    host: ${MONGODB_HOST:localhost}
+    port: ${MONGODB_PORT:27017}
+    database: ${MONGODB_DATABASE:qrcodeservice}
+
 aws:
   s3:
-    bucket: ${AWS_S3_BUCKET}
-    region: ${AWS_S3_REGION}
-    endpoint: ${AWS_S3_ENDPOINT:}
+    bucket: ${AWS_S3_BUCKET:qrcodeservice-files}
+    region: ${AWS_S3_REGION:us-east-1}
+    endpoint: ${AWS_S3_ENDPOINT}
