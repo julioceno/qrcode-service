@@ -10,8 +10,6 @@ on:
 
 permissions:
   contents: write
-  pages: write
-  id-token: write
 
 jobs:
   build:
@@ -62,6 +60,12 @@ jobs:
 
       - name: Generate OpenAPI spec
         run: mvn springdoc-openapi:generate
+
+      - name: List ditectory
+        run: ls -l .
+
+      - name: List target
+        run: ls -l target
 
       - name: Generate Swagger UI
         uses: Legion2/swagger-ui-action@v1
