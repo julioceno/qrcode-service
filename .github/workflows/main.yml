@@ -73,21 +73,17 @@ jobs:
       - name: Generate OpenAPI spec
         run: mvn springdoc-openapi:generate
 
-      - name: List ditectory
-        run: ls -l .
+      - name: Stop Spring Boot App
+        run: pkill -f "spring-boot:run" || true
 
-      - name: List target
-        run: ls -l target
-
-      - name: Generate Swagger UI
-        uses: Legion2/swagger-ui-action@v1
-        with:
-          output: swagger-ui
-          spec-file: target/openapi.json
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Prepare docs
+        run: |
+          mkdir -p docs
+          cp target/openapi.json docs/openapi.json
+          cp -r swagger-ui-dist/* docs/
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: swagger-ui
+          publish_dir: docs
