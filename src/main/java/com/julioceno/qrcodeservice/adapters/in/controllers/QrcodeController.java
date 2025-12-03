@@ -3,6 +3,7 @@ package com.julioceno.qrcodeservice.adapters.in.controllers;
 import com.julioceno.qrcodeservice.adapters.in.dto.QrcodeCreateDTO;
 import com.julioceno.qrcodeservice.core.application.usecases.QrcodeUseCase;
 import com.julioceno.qrcodeservice.core.domain.QrCode;
+import com.julioceno.qrcodeservice.core.domain.QrCodeDTO;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -21,19 +22,19 @@ public class QrcodeController {
     private final QrcodeUseCase qrcodeUseCase;
 
     @PostMapping
-    public ResponseEntity create(
+    public ResponseEntity<QrCodeDTO> create(
             @RequestBody @Valid QrcodeCreateDTO dto
     ) {
         QrCode qrCode = new QrCode();
         qrCode.setUrl(dto.url());
 
-        qrcodeUseCase.create(qrCode);
+        QrCodeDTO qrCodeDTO = qrcodeUseCase.create(qrCode);
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{id}")
-                .buildAndExpand("") // TODO: use correct ID
+                .buildAndExpand(qrCodeDTO.getId())
                 .toUri();
 
-        return ResponseEntity.created(location).build();
+        return ResponseEntity.created(location).body(qrCodeDTO);
     }
 }

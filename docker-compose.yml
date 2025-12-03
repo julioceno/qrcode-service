@@ -1,7 +1,6 @@
 services:
   mongodb:
     image: mongo:latest
-    restart: unless-stopped
     volumes:
       - mongodb-data:/data/db
     environment:

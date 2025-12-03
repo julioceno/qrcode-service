@@ -3,6 +3,7 @@ package com.julioceno.qrcodeservice.core.application.service;
 import com.julioceno.qrcodeservice.core.application.usecases.CreateQrcodeUseCase;
 import com.julioceno.qrcodeservice.core.application.usecases.QrcodeUseCase;
 import com.julioceno.qrcodeservice.core.domain.QrCode;
+import com.julioceno.qrcodeservice.core.domain.QrCodeDTO;
 
 public class QrcodeServiceImpl implements QrcodeUseCase  {
     private final CreateQrcodeUseCase createQrcodeUseCase;
@@ -11,9 +12,8 @@ public class QrcodeServiceImpl implements QrcodeUseCase  {
         this.createQrcodeUseCase = createQrcodeUseCase;
     }
 
-
     @Override
-    public void create(QrCode qrCode) {
-        createQrcodeUseCase.run(qrCode);
+    public QrCodeDTO create(QrCode qrCode) {
+        return createQrcodeUseCase.run(qrCode);
     }
 }

@@ -5,6 +5,7 @@ import com.julioceno.qrcodeservice.core.application.ports.out.LoggerPort;
 import com.julioceno.qrcodeservice.core.application.ports.out.QrcodeProviderPort;
 import com.julioceno.qrcodeservice.core.application.usecases.CreateQrcodeUseCase;
 import com.julioceno.qrcodeservice.core.domain.QrCode;
+import com.julioceno.qrcodeservice.core.domain.QrCodeDTO;
 import com.julioceno.qrcodeservice.core.domain.QrCodeRepositoryPort;
 
 import java.util.UUID;
@@ -28,7 +29,7 @@ public class CreateQrcodeServiceImpl implements CreateQrcodeUseCase {
     }
 
     @Override
-    public void run(QrCode qrCode) {
+    public QrCodeDTO run(QrCode qrCode) {
         logger.info("CreateQrcodeServiceImpl.run - start ");
 
         byte[] qrcodePdfImage = qrcodeProviderPort.generatePng(qrCode.getUrl());
@@ -37,5 +38,7 @@ public class CreateQrcodeServiceImpl implements CreateQrcodeUseCase {
         qrCode.setQrcodeUrl(qrCodeUrl);
         QrCode entity = qrCodeRepositoryPort.save(qrCode);
         logger.info("CreateQrcodeServiceImpl.run - end ");
+
+        return new QrCodeDTO(entity);
     }
 }

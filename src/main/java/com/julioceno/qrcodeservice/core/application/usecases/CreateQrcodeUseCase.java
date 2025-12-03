@@ -1,7 +1,8 @@
 package com.julioceno.qrcodeservice.core.application.usecases;
 
 import com.julioceno.qrcodeservice.core.domain.QrCode;
+import com.julioceno.qrcodeservice.core.domain.QrCodeDTO;
 
 public interface CreateQrcodeUseCase {
-    void run(QrCode qrCode);
+    QrCodeDTO run(QrCode qrCode);
 }
