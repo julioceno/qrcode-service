@@ -1,5 +1,6 @@
 package com.julioceno.qrcodeservice.infrastructure.config;
 
+import com.julioceno.qrcodeservice.core.application.ports.out.FilesProviderPort;
 import com.julioceno.qrcodeservice.core.application.ports.out.LoggerFactoryPort;
 import com.julioceno.qrcodeservice.core.application.ports.out.QrcodeProviderPort;
 import com.julioceno.qrcodeservice.core.application.service.CreateQrcodeServiceImpl;
@@ -15,10 +16,12 @@ public class BeansConfig {
     @Bean
     public CreateQrcodeUseCase createQrcodeUseCase(
             QrcodeProviderPort qrcodeProviderPort,
+            FilesProviderPort filesProviderPort,
             LoggerFactoryPort loggerFactoryPort
     ) {
         return new CreateQrcodeServiceImpl(
                 qrcodeProviderPort,
+                filesProviderPort,
                 loggerFactoryPort.getLogger(CreateQrcodeServiceImpl.class)
         );
     }

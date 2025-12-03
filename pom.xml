@@ -29,6 +29,7 @@
 	<properties>
 		<java.version>25</java.version>
         <zxing.version>3.5.4</zxing.version>
+        <aws-java-sdk.version>2.39.6</aws-java-sdk.version>
     </properties>
 	<dependencies>
 		<dependency>
@@ -49,6 +50,12 @@
             <groupId>com.google.zxing</groupId>
             <artifactId>javase</artifactId>
             <version>${zxing.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>software.amazon.awssdk</groupId>
+            <artifactId>s3</artifactId>
+            <version>${aws-java-sdk.version}</version>
         </dependency>
 
 		<dependency>

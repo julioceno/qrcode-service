@@ -1,3 +1,9 @@
 spring:
   application:
     name: qrcodeservice
+
+aws:
+  s3:
+    bucket: meu-bucket
+    region: us-east-1
+    endpoint: http://localhost:4566
