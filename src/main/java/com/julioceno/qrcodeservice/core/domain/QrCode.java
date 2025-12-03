@@ -5,6 +5,9 @@ public class QrCode {
     private String url;
     private String qrcodeUrl;
 
+    public QrCode() {
+    }
+
     public QrCode(String id, String url, String qrcodeUrl) {
         this.id = id;
         this.url = url;

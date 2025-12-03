@@ -24,11 +24,8 @@ public class QrcodeController {
     public ResponseEntity create(
             @RequestBody @Valid QrcodeCreateDTO dto
     ) {
-        QrCode qrCode = new QrCode(
-                null,
-                dto.url(),
-                dto.url()
-        );
+        QrCode qrCode = new QrCode();
+        qrCode.setUrl(dto.url());
 
         qrcodeUseCase.create(qrCode);
         URI location = ServletUriComponentsBuilder
