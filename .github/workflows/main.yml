@@ -11,6 +11,12 @@ on:
 permissions:
   contents: write
 
+env:
+  AWS_S3_ENDPOINT: http://localhost:4566
+  AWS_ACCESS_KEY_ID: dummy
+  AWS_SECRET_ACCESS_KEY: dummy
+  AWS_REGION: us-east-1
+
 jobs:
   build:
     runs-on: ubuntu-latest
