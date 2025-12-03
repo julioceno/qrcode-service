@@ -4,6 +4,6 @@ spring:
 
 aws:
   s3:
-    bucket: meu-bucket
-    region: us-east-1
-    endpoint: http://localhost:4566
+    bucket: ${AWS_S3_BUCKET}
+    region: ${AWS_S3_REGION}
+    endpoint: ${AWS_S3_ENDPOINT:}
