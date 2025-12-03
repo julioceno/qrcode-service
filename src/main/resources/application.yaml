@@ -12,3 +12,8 @@ aws:
     bucket: ${AWS_S3_BUCKET:qrcodeservice-files}
     region: ${AWS_S3_REGION:us-east-1}
     endpoint: ${AWS_S3_ENDPOINT}
+
+
+springdoc:
+  api-docs:
+    version: OPENAPI_3_0
