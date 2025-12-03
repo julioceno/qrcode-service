@@ -19,6 +19,11 @@ public class Slf4LoggerAdapter implements LoggerPort {
     }
 
     @Override
+    public void debug(String message, Object... params) {
+        logger.debug(appendCorrelationId(message), params);
+    }
+
+    @Override
     public void warn(String message, Object... params) {
         logger.warn(appendCorrelationId(message));
     }

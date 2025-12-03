@@ -5,6 +5,8 @@ import com.julioceno.qrcodeservice.core.domain.QrCode;
 import com.julioceno.qrcodeservice.core.domain.QrCodeRepositoryPort;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public class QrCodeRepositoryImpl implements QrCodeRepositoryPort {
     private final MongoQrCodeRepository mongoQrCodeRepository;
@@ -18,6 +20,12 @@ public class QrCodeRepositoryImpl implements QrCodeRepositoryPort {
         QrCodeEntity entity = new QrCodeEntity(qrCode);
         QrCodeEntity qrCodeEntity = mongoQrCodeRepository.save(entity);
         return toDomain(qrCodeEntity);
+    }
+
+    @Override
+    public Optional<QrCode> findById(String id) {
+        Optional<QrCodeEntity> qrCodeEntity = mongoQrCodeRepository.findById(id);
+        return qrCodeEntity.map(this::toDomain);
     }
 
     private QrCode toDomain(QrCodeEntity qrCodeEntity) {

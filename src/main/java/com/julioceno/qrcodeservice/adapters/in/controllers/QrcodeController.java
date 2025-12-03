@@ -6,11 +6,9 @@ import com.julioceno.qrcodeservice.core.domain.QrCode;
 import com.julioceno.qrcodeservice.core.domain.QrCodeDTO;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
@@ -36,5 +34,13 @@ public class QrcodeController {
                 .toUri();
 
         return ResponseEntity.created(location).body(qrCodeDTO);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<QrCodeDTO> getById(
+            @PathVariable("id") String id
+    ) {
+        QrCodeDTO qrCodeDTO = qrcodeUseCase.getById(id);
+        return ResponseEntity.ok(qrCodeDTO);
     }
 }

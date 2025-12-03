@@ -5,4 +5,5 @@ import com.julioceno.qrcodeservice.core.domain.QrCodeDTO;
 
 public interface QrcodeUseCase {
     QrCodeDTO create(QrCode dto);
+    QrCodeDTO getById(String id);
 }

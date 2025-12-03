@@ -43,4 +43,13 @@ public class QrCodeDTO {
     public void setQrcodeUrl(String qrcodeUrl) {
         this.qrcodeUrl = qrcodeUrl;
     }
+
+    @Override
+    public String toString() {
+        return "QrCodeDTO{" +
+                "id='" + id + '\'' +
+                ", url='" + url + '\'' +
+                ", qrcodeUrl='" + qrcodeUrl + '\'' +
+                '}';
+    }
 }
