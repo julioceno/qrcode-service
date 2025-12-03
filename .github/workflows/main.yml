@@ -20,6 +20,18 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '25'
-          
+
       - name: Build project
         run: mvn clean install -DskipTests
+
+      - name: Login Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build docker image
+        run: docker build -t julioceno/qrcodeservice:latest .
+
+      - name: Push docker image
+        run: docker push julioceno/qrcodeservice:latest
