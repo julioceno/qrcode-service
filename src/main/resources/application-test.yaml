@@ -1,0 +1,5 @@
+aws:
+  s3:
+    bucket: dummy
+    region: $dummy
+    endpoint: http://localhost:4566
