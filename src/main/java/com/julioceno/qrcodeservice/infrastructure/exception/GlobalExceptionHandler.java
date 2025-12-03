@@ -2,6 +2,7 @@ package com.julioceno.qrcodeservice.infrastructure.exception;
 
 import com.julioceno.qrcodeservice.core.application.exception.BadRequestException;
 import com.julioceno.qrcodeservice.core.application.exception.ErrorResponse;
+import com.julioceno.qrcodeservice.core.application.exception.NotFoundException;
 import com.julioceno.qrcodeservice.core.application.exception.QrCodeGenerationException;
 import com.julioceno.qrcodeservice.infrastructure.logger.CorrelationId;
 import jakarta.servlet.http.HttpServletRequest;
@@ -70,6 +71,25 @@ public class GlobalExceptionHandler {
         );
 
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(body);
+    }
+
+    @ExceptionHandler(NotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleQrCodeException(
+            NotFoundException ex,
+            HttpServletRequest request
+    ) {
+        String correlationId = CorrelationId.get();
+
+        ErrorResponse body = new ErrorResponse(
+                LocalDateTime.now(),
+                HttpStatus.NOT_FOUND.value(),
+                "Not Found",
+                ex.getMessage(),
+                request.getRequestURI(),
+                correlationId
+        );
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(body);
     }
 
     @ExceptionHandler(RuntimeException.class)
