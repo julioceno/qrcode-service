@@ -8,9 +8,6 @@ on:
     branches:
       - main
 
-permissions:
-  contents: write
-
 env:
   AWS_S3_ENDPOINT: http://localhost:4566
   AWS_ACCESS_KEY_ID: dummy
@@ -46,44 +43,3 @@ jobs:
       - name: Push docker image
         run: docker push julioceno/qrcodeservice:latest
 
-
-  publish-swagger:
-    runs-on: ubuntu-latest
-    needs: build 
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v6
-
-      - name: Setup Java
-        uses: actions/setup-java@v5
-        with:
-          distribution: 'temurin'
-          java-version: '25'
-
-      - name: Build project
-        run: mvn clean install -DskipTests
-
-      - name: Start Spring Boot App for OpenAPI
-        run: mvn spring-boot:run &
-        
-      - name: Wait for Application Startup
-        run: sleep 30
-
-      - name: Generate OpenAPI spec
-        run: mvn springdoc-openapi:generate
-
-      - name: Stop Spring Boot App
-        run: pkill -f "spring-boot:run" || true
-
-      - name: Prepare docs
-        run: |
-          mkdir -p docs
-          cp target/openapi.json docs/openapi.json
-          cp -r swagger-ui-dist/* docs/
-
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: docs
