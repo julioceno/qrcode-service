@@ -24,7 +24,7 @@ public class S3FilesAdapter implements FilesProviderPort {
         PutObjectRequest objectRequest = PutObjectRequest.builder()
                 .bucket(bucketName)
                 .key(fileName)
-                .contentType("image/png") // TODO: alter this to dynamic prop
+                .contentType("image/png")
                 .build();
 
 
