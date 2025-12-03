@@ -58,6 +58,12 @@ jobs:
       - name: Build project
         run: mvn clean install -DskipTests
 
+      - name: Start Spring Boot App for OpenAPI
+        run: mvn spring-boot:run &
+        
+      - name: Wait for Application Startup
+        run: sleep 30
+
       - name: Generate OpenAPI spec
         run: mvn springdoc-openapi:generate
 
