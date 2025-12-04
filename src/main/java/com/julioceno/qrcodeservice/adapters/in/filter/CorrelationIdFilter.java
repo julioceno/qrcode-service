@@ -25,19 +25,19 @@ public class CorrelationIdFilter extends OncePerRequestFilter {
             HttpServletResponse response,
             FilterChain filterChain
     ) throws ServletException, IOException {
-        String correlationId = request.getHeader(CorrelationId.CORRELATION_ID);
+        String correlationId = request.getHeader(CorrelationId.HEADER_NAME);
 
         if(!StringUtils.hasText(correlationId)) {
             correlationId = UUID.randomUUID().toString();
-            response.setHeader(CorrelationId.CORRELATION_ID, correlationId);
+            response.setHeader(CorrelationId.HEADER_NAME, correlationId);
         }
 
-        MDC.put(CorrelationId.CORRELATION_ID, correlationId);
+        MDC.put(CorrelationId.HEADER_NAME, correlationId);
 
         try {
             filterChain.doFilter(request, response);
         } finally {
-            MDC.remove(CorrelationId.CORRELATION_ID);
+            MDC.remove(CorrelationId.HEADER_NAME);
         }
     }
 }

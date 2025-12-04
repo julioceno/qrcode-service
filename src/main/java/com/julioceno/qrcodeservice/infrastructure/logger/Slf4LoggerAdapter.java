@@ -34,7 +34,7 @@ public class Slf4LoggerAdapter implements LoggerPort {
     }
 
     private String appendCorrelationId(String message) {
-        String correlationId = MDC.get(CorrelationId.CORRELATION_ID);
+        String correlationId = MDC.get(CorrelationId.HEADER_NAME);
 
         if (correlationId == null || correlationId.isBlank()) {
             return message;
