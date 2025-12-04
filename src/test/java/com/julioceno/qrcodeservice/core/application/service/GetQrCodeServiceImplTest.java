@@ -49,6 +49,6 @@ class GetQrCodeServiceImplTest {
         NotFoundException ex = assertThrows(NotFoundException.class, () -> getQrCodeServiceImpl.run(id));
 
         assertEquals(String.format("QrCode with id %s not found", id), ex.getMessage());
-        verify(qrCodeRepositoryPort).findById(id);
+        verify(qrCodeRepositoryPort).findById("s");
     }
 }
