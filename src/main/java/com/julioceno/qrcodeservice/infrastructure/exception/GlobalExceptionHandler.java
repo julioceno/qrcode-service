@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(BadRequestException.class)
-    public ResponseEntity<ErrorResponse> handleBadRequest(BadRequestException ex, HttpServletRequest request) {
+    public ResponseEntity<ErrorResponse> handleException(BadRequestException ex, HttpServletRequest request) {
         String correlationId = CorrelationId.get();
 
         ErrorResponse body = new ErrorResponse(
