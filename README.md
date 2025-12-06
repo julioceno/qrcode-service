@@ -57,6 +57,15 @@ A aplicação utiliza diferentes perfis de configuração:
 - **MongoDB** - Banco de dados NoSQL
 - **Docker & Docker Compose** - Containerização e orquestração
 
+## 🔄 Pipeline CI/CD
+
+O projeto possui uma pipeline automatizada de integração e entrega contínua (CI/CD) configurada, que realiza:
+
+- **Testes automatizados** - Execução de todos os testes unitários e de integração
+- **Build** - Compilação e empacotamento da aplicação
+
+A pipeline é executada automaticamente a cada push e pull request, garantindo a qualidade e estabilidade do código.
+
 ## 📚 API Endpoints
 
 | Método | Endpoint | Descrição |
